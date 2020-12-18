@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import SearchScreen from '../screens/Search.screen';
+import SearchScreen, { SearchScreenOptions } from '../screens/Search.screen';
 import { Platform } from 'react-native';
 import Colors from '../constant/Colors';
 
@@ -18,6 +18,6 @@ const defaultNavigationOptions = {
 const RestaurantStackNavigator = createStackNavigator();
 export const RestaurantNavigator = () => {
     return <RestaurantStackNavigator.Navigator screenOptions={defaultNavigationOptions}>
-        <RestaurantStackNavigator.Screen name="search" component={SearchScreen} />
+        <RestaurantStackNavigator.Screen name="search" component={SearchScreen} options={SearchScreenOptions} />
     </RestaurantStackNavigator.Navigator>
 }
