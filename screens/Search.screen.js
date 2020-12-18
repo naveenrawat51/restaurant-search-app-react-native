@@ -10,6 +10,7 @@ export default function SearchScreen() {
       <Searchbar
         searchText={searchText}
         searchTextHandler={(newText) => setSearchText(newText)}
+        onSearchTextSubmit={() => console.log("searching restaurants!!")}
       />
       <Text>Search Screen {searchText}</Text>
     </View>

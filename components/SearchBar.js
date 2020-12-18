@@ -8,20 +8,27 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SearchBar({ searchText, searchTextHandler }) {
+export default function SearchBar({
+  searchText,
+  searchTextHandler,
+  onSearchTextSubmit,
+}) {
   return (
     <View style={styles.searchBarContainer}>
-      <Ionicons
-        style={styles.searchIconStyle}
-        name={Platform.OS === "android" ? "md-search" : "ios-search"}
-      />
+      <TouchableOpacity onPress={onSearchTextSubmit}>
+        <Ionicons
+          style={styles.searchIconStyle}
+          name={Platform.OS === "android" ? "md-search" : "ios-search"}
+        />
+      </TouchableOpacity>
       <TextInput
         autoCapitalize="none"
         autoCorrect={false}
         style={styles.input}
         value={searchText}
         placeholder="Search"
-        onChangeText={(newText) => searchTextHandler(newText)}
+        onChangeText={searchTextHandler}
+        onEndEditing={onSearchTextSubmit}
       />
     </View>
   );
