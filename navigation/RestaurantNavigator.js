@@ -7,7 +7,12 @@ import Colors from '../constant/Colors';
 const defaultNavigationOptions = {
     headerStyle: {
         backgroundColor: Platform.OS === 'android' ? Colors.primary : ""
-    }
+    },
+    headerTitleStyle: {
+        fontFamily: "open-sans-bold",
+        alignSelf: 'center'
+      },
+    headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
 }
 
 const RestaurantStackNavigator = createStackNavigator();
