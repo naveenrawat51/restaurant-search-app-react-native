@@ -1,23 +1,35 @@
 import React from 'react';
-import { StyleSheet, View, Text, Platform } from 'react-native';
+import { StyleSheet, View, TextInput, Platform, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 
 export default function SearchBar() {
-    return <View style={styles.background}>
-        <Ionicons
+    return <View style={styles.searchBarContainer}>
+        <Ionicons style={styles.searchIconStyle}
               name={Platform.OS === "android" ? "md-search" : "ios-search"}
-              size={23}
-              color="red"
             />
-        <Text>Search bar</Text>
+        <TextInput style={styles.input} placeholder="Search" />
     </View>
 }
 
 const styles = StyleSheet.create({
-    background: {
-        backgroundColor: '#F0EEEE',
+    searchBarContainer: {
+        backgroundColor: '#D3D3D3',
         height: 50,
         borderRadius: 5,
-        margin: 15
+        margin: 15,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    input: {
+        padding: 5,
+        flex: 1,
+        fontSize: 18
+    },
+    searchIconStyle: {
+        fontSize: 35,
+        alignSelf: "center",
+        marginHorizontal: 5,
+        color: 'black'
     }
 })
