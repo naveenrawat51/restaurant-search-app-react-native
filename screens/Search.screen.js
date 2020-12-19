@@ -1,12 +1,22 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ActivityIndicator,
+  ScrollView,
+} from "react-native";
 import Searchbar from "../components/SearchBar";
 import Colors from "../constant/Colors";
 import useResults from "../hooks/useResults";
+import ResultsList from "../components/ResultsList";
 
 export default function SearchScreen() {
   const [searchText, setSearchText] = useState();
   const [results, isLoading, error, searchApi] = useResults();
+
+  const filterResultsByPrice = (price) =>
+    results.filter((result) => result.price === price);
 
   if (isLoading) {
     return (
@@ -25,14 +35,23 @@ export default function SearchScreen() {
   }
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Searchbar
         searchText={searchText}
         searchTextHandler={(newText) => setSearchText(newText)}
         onSearchTextSubmit={() => searchApi(searchText)}
       />
-      <Text>Search Screen {searchText}</Text>
-      <Text>We have found {results.length}</Text>
+      <ScrollView>
+        <ResultsList
+          results={filterResultsByPrice("$")}
+          title="Cost Effective"
+        />
+        <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
+        <ResultsList
+          results={filterResultsByPrice("$$$")}
+          title="Big Spender"
+        />
+      </ScrollView>
     </View>
   );
 }
