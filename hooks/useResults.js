@@ -79,6 +79,10 @@ export default () => {
       setIsLoading(false);
     } catch (err) {
       console.log(err.message);
+      if (err.message.indexOf("429") > -1) {
+        // checking for too many api calls and putting dummy data if it happens
+        setResults(makeData(data));
+      }
       setIsLoading(false);
       setError(true);
     }
@@ -86,7 +90,6 @@ export default () => {
 
   useEffect(() => {
     searchApi("pasta");
-    setResults(makeData(data));
   }, [yelp]);
 
   return [results, isLoading, error, searchApi];

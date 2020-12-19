@@ -3,7 +3,11 @@ import { StyleSheet, View, Text, FlatList } from "react-native";
 
 import Result from "./Result";
 
-export default function ResultsList({ title, results, navigation }) {
+export default function ResultsList({ title, results }) {
+  if (results.length === 0) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>

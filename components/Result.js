@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Result({ name, image_url, rating, review_count }) {
+export default function Result({ id, name, image_url, rating, review_count }) {
   const navigation = useNavigation();
 
   const onResultClickHandler = () => {
-    navigation.navigate("resultDetail", { name, image_url });
+    navigation.navigate("resultDetail", { id, name });
   };
 
   return (
